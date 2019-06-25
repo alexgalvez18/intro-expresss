@@ -1,0 +1,22 @@
+const express = require('express')
+
+const app = express()
+
+app.use(express.static('public'))
+
+app.get('/about', (req, res) => {
+  console.log(req)
+  res.send('About')
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/home.html')
+})
+
+app.get('/cat', (req, res, next) => {
+  res.sendFile(__dirname + '/views/cat.html')
+})
+
+app.listen(3000, () => {
+  console.log(`server on: localhost:3000`)
+})
